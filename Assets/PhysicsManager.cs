@@ -16,7 +16,7 @@ public class PhysicsManager : MonoBehaviour, ICollidable
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         for (int i = 0; i < Spheres.Count; i++)
         {
@@ -26,7 +26,7 @@ public class PhysicsManager : MonoBehaviour, ICollidable
                 {
             
                     Spheres[j].Velocity = Spheres[i].ResolveCollisionWith(Spheres[j]);
-                    //Spheres[j].UpdatePosition();
+                    
                 }
             }
         }
