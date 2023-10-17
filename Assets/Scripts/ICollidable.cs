@@ -19,13 +19,18 @@ public interface ICollidable
 
     static bool isColliding(SpherePhysics sphereScript1, SpherePhysics sphereScript2)
     {
-        return Vector3.Distance(sphereScript1.newPosition,
-                                sphereScript2.newPosition) <
-                                sphereScript1.Radius + sphereScript2.Radius;
+        float distance = Vector3.Distance(sphereScript1.transform.position, sphereScript2.transform.position);
+
+        return distance <= sphereScript1.Radius + sphereScript2.Radius;
     }
 
     static Vector3 Rebound(Vector3 Velocity, Vector3 Normal, float Cior)
     {
        return Perpendicular(Velocity,Normal) - (Cior * Parallel(Velocity, Normal));
+    }
+
+    static Vector3 distance(Vector3 o, Vector3 p)
+    {
+        return o - p;
     }
 }
