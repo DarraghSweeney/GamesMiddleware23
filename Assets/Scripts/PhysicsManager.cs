@@ -7,7 +7,7 @@ using UnityEngine;
 public class PhysicsManager : MonoBehaviour, ICollidable
 {
 
-    List<SpherePhysics> Spheres;
+    public List<SpherePhysics> Spheres;
 
     // Start is called before the first frame update
     void Start()
@@ -24,9 +24,11 @@ public class PhysicsManager : MonoBehaviour, ICollidable
             {
                 if (ICollidable.isColliding(Spheres[i], Spheres[j]))
                 {
-            
-                    Spheres[j].Velocity = Spheres[i].ResolveCollisionWith(Spheres[j]);
-                    
+                    SpherePhysics sph1 = Spheres[i];
+                    SpherePhysics sph2 = Spheres[j];
+                    float sumOfRadii = sph1.Radius + sph2.Radius;
+
+                    sph1.ResolveCollisionWithSphere(sph1, sph2, sumOfRadii);
                 }
             }
         }
